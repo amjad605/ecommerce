@@ -5,6 +5,7 @@ import 'package:ecommerce/models/usermodel.dart';
 import 'package:ecommerce/provider/home_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart' as p;
 
 class DatabaseHelper {
 
@@ -15,7 +16,8 @@ class DatabaseHelper {
   static Future<void> initDB() async {
     print("initDB");
     var databasesPath = await getDatabasesPath();
-    String path = ("${databasesPath}appDB.db");
+    String path = p.join(databasesPath,'appDB.db');
+
 
     _db = await openDatabase(path, version: 1, onOpen: (db) {
       print("Database Opened !!");
@@ -49,6 +51,18 @@ class DatabaseHelper {
     else {
       return false;
     }
+  }
+  static Future<User?> getUser(String email ) async{
+  List<dynamic>user=await _db!.query('Users',where:"email=?",whereArgs:[email] );
+if(user.isNotEmpty){
+  var rowData=user[0];
+  String email= rowData['email'] as String;
+  String name=rowData['name'] as String;
+  String Phoneno = rowData['phoneNo'] as String ;
+  String pass = rowData['password'] as String;
+  return new User(name: name, email: email, password: pass, phoneNo: Phoneno);
+}
+   return null;
   }
 
 
@@ -145,7 +159,19 @@ items.add(item);
         where: "id = ?",
         whereArgs: [item.id]);
 
-getfavItems();
+print(item.id);
+  }
+  static void updateItems(Item item) async {
+    //notice that the id column will never change
+    _db!.update('Items', {
+      'name' : item.name,
+      'category' : item.category,
+      'image' : item.image,
+      'isFav' : item.isFav,
+      'price' : item.price,
+    },
+        where: "id = ?",
+        whereArgs: [item.id]);
   }
 
   ///Delete item by its id
@@ -154,7 +180,7 @@ getfavItems();
     print('Delete Res: $resultStatus');
   }
   static void delete(Item price) async {
-   await _db!.delete('Items', where: "id = ?", whereArgs: [price.id]);
+   await _db!.delete('Items');
 
   }
 

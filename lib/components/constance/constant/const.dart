@@ -1,3 +1,4 @@
 import 'package:ecommerce/models/item_model.dart';
 
-List<String> category=['Greatest Offers','Ramadan', 'Salads and Ready Meals','New Arrivals','Fruits & Vegetables','Dairy Products', 'Meet & Chicken','Frozen Products' ];
+List<String> category=['Grocery','Fruit', 'Vegetable','Dairy Products', 'Meet & Chicken' ];
+List<String> category2=['https://thumbs.dreamstime.com/b/shopping-paper-bag-different-groceries-light-blue-background-flat-lay-space-text-156220126.jpg','https://www.littlebroken.com/wp-content/uploads/2022/07/Fruit-Platter-01-252x336.jpg', 'https://parade.com/.image/ar_16:9%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTkwNTc4MTE3OTgzNjA5OTgx/colorful-vegetables-in-bowl-ftr.jpg','https://cdn.firstcry.com/education/2022/11/07145239/Dairy-Product-List-For-Kids-with-their-Benefits-And-Facts.jpg', 'https://cdn.shopify.com/s/files/1/0444/4461/4814/collections/blue_color2_1024x1024.png?v=1672683673' ];

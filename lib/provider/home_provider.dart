@@ -7,6 +7,7 @@ import 'package:ecommerce/Market/market.dart';
 import 'package:ecommerce/cart/cart.dart';
 import 'package:ecommerce/menu/profile.dart';
 import 'package:ecommerce/models/item_model.dart';
+import 'package:ecommerce/models/usermodel.dart';
 //import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
 //import 'package:fluttertoast/fluttertoast.dart';
@@ -51,7 +52,9 @@ class HomeProvider extends ChangeNotifier {
  List<Item> e = [];
 
 
-
+Widget favicon=Icon(
+  Icons.favorite_border,
+);
 
 
 
@@ -59,7 +62,7 @@ class HomeProvider extends ChangeNotifier {
   List<Item>favItem=[];
   List <Item>cartItem=[];
   var quantity;
-
+var Iconfav=Icon(Icons.add);
 void plus(Item item){
   TotalSum+=item.price as double;
 
@@ -80,18 +83,18 @@ TotalSum-=item.price as double;
   }
   void addItem(Item item) async {
     DatabaseHelper.newItem(item);
-    if(item.category=="a"){
-      a.add(item);
-    }
-    else if(item.category=="b"){
-      b.add(item);
-    }
-    else if(item.category=="c"){
-      c.add(item);
-    }
-
-    else if (item.category=="e"){
-    items.add(item);}
+    // if(item.category=="a"){
+    //   a.add(item);
+    // }
+    // else if(item.category=="b"){
+    //   b.add(item);
+    // }
+    // else if(item.category=="c"){
+    //   c.add(item);
+    // }
+    //
+    // else if (item.category=="e"){
+    // items.add(item);}
 
     notifyListeners();
   }
@@ -121,6 +124,7 @@ TotalSum-=item.price as double;
         }
 
       }
+
    notifyListeners();
 
 
@@ -161,12 +165,14 @@ TotalSum-=item.price as double;
  void updateItem(Item item)async{
 
    DatabaseHelper.updateItem(item);
-   if(item.isFav){
-     favItem=await DatabaseHelper.getfavItems();
-   }
-   else{
-     favItem.remove(item);
-   }
+  // DatabaseHelper.updateItems(item);
+   // if(item.isFav){
+   //   favItem.add(item);
+   // }
+   // else{
+   //   item.isFav=false;
+   //   favItem.remove(item);
+   // }
 
    notifyListeners();
  }
@@ -182,6 +188,7 @@ TotalSum-=item.price as double;
   }
   void changenavbar(int index) async{
   indexed=index;
+
   if(index==1){
     favItem=await DatabaseHelper.getfavItems();
   }
@@ -216,6 +223,37 @@ notifyListeners();
 
 
     notifyListeners();
+  }
+ void changefav(Item item ) {
+   item.isFav=!item.isFav;
+  if(item.isFav){
+
+
+    item.Iconfav= Icon(
+
+      Icons.favorite,
+      color: Colors.red,
+    ) ;
+  }else{
+ item.Iconfav  = Icon(
+    Icons.favorite_border,
+
+  );}
+
+
+notifyListeners();
+ }
+User? user ;
+  void getuser(String s)async
+  {
+    user = await DatabaseHelper.getUser(s);
+
+  }
+  void removelove(Item item){
+    if(item.isFav!=true)
+    item.Iconfav=Icon(Icons.favorite_border);
+    notifyListeners();
+
   }
 
 }

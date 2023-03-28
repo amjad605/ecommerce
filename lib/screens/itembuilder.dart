@@ -8,16 +8,17 @@ import 'package:provider/provider.dart';
 
 class Itembuilder extends StatefulWidget {
 
-  final Item item;
+   Item item;
 
 
-   Itembuilder({Key? key, required this.item,}) : super(key: key);
+  Itembuilder({Key? key, required this.item,}) : super(key: key);
 
   @override
   State<Itembuilder> createState() => _ItembuilderState();
 }
 
 class _ItembuilderState extends State<Itembuilder> {
+
   bool t=false;
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class _ItembuilderState extends State<Itembuilder> {
 
         context,
         MaterialPageRoute(
-        builder: (context) => DetailItem(item: widget.item,)),);},
+            builder: (context) => DetailItem(item: widget.item,)),);},
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child:   Row(
@@ -42,29 +43,40 @@ class _ItembuilderState extends State<Itembuilder> {
                 children: [
                   Expanded(child: Container(
 
-                      child: Stack(alignment: AlignmentDirectional.bottomEnd
-                ,children:[ //Container(child: Image.network('${widget.item?.image}',fit: BoxFit.cover,width: 300,height: 300,scale: 30,),decoration: BoxDecoration(borderRadius: BorderRadiusDirectional.circular(50)),),
- Container(
-width: 150,
-height: 280,
-decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
-image: DecorationImage(
-image: NetworkImage('${widget.item?.image}'),fit: BoxFit.cover,
-),
-),
+                    child: Stack(alignment: AlignmentDirectional.bottomEnd
+                      ,children:[ //Container(child: Image.network('${widget.item?.image}',fit: BoxFit.cover,width: 300,height: 300,scale: 30,),decoration: BoxDecoration(borderRadius: BorderRadiusDirectional.circular(50)),),
+                        Container(
+                          width: 150,
+                          height: 280,
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
+                            image: DecorationImage(
+                              image: NetworkImage('${widget.item?.image}'),fit: BoxFit.cover,
+                            ),
+                          ),
 
-),
-                      IconButton(onPressed: (){
+                        ),
+                        IconButton(onPressed: (){
 
-                          widget.item.isFav = !widget.item.isFav;
-
-
-                        provider.updateItem(widget.item);
+                          // widget.item.isFav = !widget.item.isFav;
+                          //
 
 
-                  }, icon:favIcon(),) ],
+                          provider.changefav(widget.item);
+                          if(widget.item.isFav){
+                            provider.favItem.add(widget.item);
 
-                      ),
+                          }
+                          else{
+                            provider.favItem.remove(widget.item);
+
+
+                         }
+                          provider.updateItem(widget.item);
+
+
+                        }, icon:widget.item.Iconfav,) ],
+
+                    ),
                   ),
                   ),
                   Container(width:180,
@@ -72,18 +84,18 @@ image: NetworkImage('${widget.item?.image}'),fit: BoxFit.cover,
                   SizedBox(width: 30,),
                   Text('${widget.item?.price} LE',style: TextStyle(fontSize: 20,overflow: TextOverflow.ellipsis,color: Colors.grey[800]),),
                   Container(
-      width: 120,
-      height: 30,
+                    width: 120,
+                    height: 30,
 
-      decoration: BoxDecoration(
-      color:Colors.white ,
-      borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: defaultcolor2),
+                    decoration: BoxDecoration(
+                      color:Colors.white ,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: defaultcolor2),
 
-      ),
+                    ),
 
                     child: MaterialButton(onPressed: (){
-provider.addtocart(widget.item);
+                      provider.addtocart(widget.item);
 
                     },child:Text("add to cart"),splashColor:defaultcolor2,
 

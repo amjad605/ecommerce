@@ -27,6 +27,7 @@ var formKey=GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<HomeProvider>(context, listen: true);
     return Scaffold(
 
     backgroundColor: Colors.white,
@@ -137,7 +138,7 @@ if(success){
   pass=true;
   em=true;
   if(formKey.currentState!.validate()){
-
+provider.getuser(emailVal);
     Navigator.pushNamed(context, '/Home');
 
   }

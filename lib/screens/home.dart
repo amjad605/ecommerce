@@ -103,42 +103,44 @@ class _HomeState extends State<Home> {
       )
         ,
 
-       appBar:
-        AppBar(
-          backgroundColor: defaultColor,
-          // Color(0xffB9E0FF),
-          automaticallyImplyLeading: false,
-actions: [Padding(
-  padding: const EdgeInsetsDirectional.only(start: 10,end: 10,top: 14),
+       appBar:provider.indexed==3?
+        null:AppBar(
+         backgroundColor: defaultColor,
+         toolbarHeight: 60,
+         elevation: 0,
+         // Color(0xffB9E0FF),
+         automaticallyImplyLeading: false,
+         actions: [Padding(
+             padding: const EdgeInsetsDirectional.only(start: 10,end: 10,top: 14),
 
-  child:Stack(
-    fit:StackFit.passthrough,
+             child:Stack(
+               fit:StackFit.passthrough,
 
-    alignment: AlignmentDirectional.center,
-
-
-    children:[ badges.Badge(badgeContent: Text('${provider.cartItem.length}',style: TextStyle(color: Colors.white),
-    ),
-  position: badges.BadgePosition.topEnd(end: 10,top: -14),
-        badgeStyle: badges.BadgeStyle(padding: EdgeInsets.all(4),badgeColor: Colors.pink),
-        
-        child: MaterialButton(child: Image.asset('assets/images/shop.png',width: 45,height: 250,),onPressed: (){
-
-          Navigator.push(context,MaterialPageRoute(builder: (context)=>provider.screens[2]));},
+               alignment: AlignmentDirectional.center,
 
 
+               children:[ badges.Badge(badgeContent: Text('${provider.cartItem.length}',style: TextStyle(color: Colors.white),
+               ),
+                 position: badges.BadgePosition.topEnd(end: 10,top: -14),
+                 badgeStyle: badges.BadgeStyle(padding: EdgeInsets.all(4),badgeColor: Colors.pink),
+
+                 child: MaterialButton(child: Image.asset('assets/images/shop.png',width: 45,height: 250,),onPressed: (){
+
+                   Navigator.push(context,MaterialPageRoute(builder: (context)=>provider.screens[2]));},
 
 
-),
-    ),
-    ],
 
 
-  )
-)
-],
+                 ),
+               ),
+               ],
 
-        ),
+
+             )
+         )
+         ],
+
+       ),
         body: provider.screens[provider.indexed],
       ),
     );

@@ -1,7 +1,9 @@
 import 'package:ecommerce/Helperdp/databasehelper.dart';
 import 'package:ecommerce/models/usermodel.dart';
+import 'package:ecommerce/provider/home_provider.dart';
 import 'package:ecommerce/screens/home.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Signup extends StatefulWidget {
   @override
@@ -21,6 +23,7 @@ class _SignupState extends State<Signup> {
 bool isClicked=false;
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<HomeProvider>(context, listen: true);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar:AppBar(
@@ -177,6 +180,7 @@ leading:IconButton(icon: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.bl
 
                       if(formKey.currentState!.validate()){
                         DatabaseHelper.addUser(user);
+                        provider.getuser(email);
                         Navigator.popAndPushNamed(context, '/Home');
                       }
 

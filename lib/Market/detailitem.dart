@@ -12,7 +12,13 @@ class DetailItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     appBar: AppBar(backgroundColor:defaultColor,),
+     appBar: AppBar(backgroundColor:defaultColor,
+
+     leading: IconButton(icon: Icon(Icons.arrow_back_ios_new_outlined),onPressed: (){
+      Navigator.pop(context);
+
+     },),
+     ),
      body: Column(
      children: [
       Container(

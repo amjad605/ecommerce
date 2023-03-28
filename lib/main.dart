@@ -1,5 +1,6 @@
 import 'package:ecommerce/Admin/Admin_home.dart';
 import 'package:ecommerce/Helperdp/databasehelper.dart';
+import 'package:ecommerce/components/constance/color.dart';
 import 'package:ecommerce/provider/home_provider.dart';
 import 'package:ecommerce/screens/home.dart';
 import 'package:ecommerce/screens/login.dart';
@@ -31,6 +32,19 @@ class MyApp extends StatelessWidget {
 
           primarySwatch: Colors.blue,
         ),
+        darkTheme: ThemeData(
+          scaffoldBackgroundColor: Color(0xff323232),
+          bottomNavigationBarTheme: BottomNavigationBarThemeData(backgroundColor: defaultcolor2,selectedLabelStyle: TextStyle(color: defaultcolor2,)
+
+              ,type: BottomNavigationBarType.fixed,elevation: 50,
+              unselectedItemColor: Colors.grey),
+          appBarTheme:AppBarTheme(color: defaultcolor2),
+          textTheme:TextTheme(bodyMedium: TextStyle(color: Colors.white, fontSize: 18,)),
+
+          primarySwatch:Colors.deepPurple,
+
+        ),
+      themeMode: ThemeMode.light,
       routes: {
         '/': (BuildContext context) => Login(),
         '/SignUp': (BuildContext context) => Signup(),

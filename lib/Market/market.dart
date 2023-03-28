@@ -2,6 +2,7 @@ import 'package:ecommerce/Market/detailitem.dart';
 import 'package:ecommerce/components/constance/color.dart';
 import 'package:ecommerce/components/constance/constant/const.dart';
 import 'package:ecommerce/components/constance/constant/const.dart';
+import 'package:ecommerce/componentsonstant/const.dart';
 import 'package:ecommerce/models/item_model.dart';
 import 'package:ecommerce/provider/home_provider.dart';
 import 'package:ecommerce/screens/itembuilder.dart';
@@ -37,7 +38,7 @@ class _FakhaState extends State<Fakha> {
             Container(
 
               width: double.infinity,
-height: 150,
+height: 180,
 
 padding:EdgeInsetsDirectional.all(20),
               decoration: BoxDecoration(borderRadius: BorderRadiusDirectional.circular(30),
@@ -52,78 +53,28 @@ padding:EdgeInsetsDirectional.all(20),
 
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Container(
-                    width: 10,
-                    height: 30,
-                    color: defaultcolor2,
-                  ),
+                  // Container(
+                  //   width: 10,
+                  //   height: 30,
+                  //   color: defaultcolor2,
+                  // ),
                   SizedBox(width: 5,),
                   Text('CATEGORY',style: TextStyle(fontSize: 30,),
                   ),
-                  SizedBox(width: 120,),
-                //  TextButton(onPressed: (){}, child: Text('See More',style: TextStyle(color: defaultcolor2,fontSize: 18),),)
+                  SizedBox(width: 30,),
+                 TextButton(onPressed: (){}, child: Icon(Icons.arrow_forward_ios,color: defaultcolor2,),)
                 ],
               ),
             ),
           SizedBox(height: 10,),
           Container(
-            height: 100,
+            height: 175,
 
-            child: ListView.separated(itemBuilder:(context,int index)=> categoryBuilder(index), separatorBuilder: (BuildContext context, int index) { return SizedBox(width: 0,) ;}, itemCount: category.length,scrollDirection: Axis.horizontal,),
+            child: ListView.separated(itemBuilder:(context,int index)=> Catrgory(index), separatorBuilder: (BuildContext context, int index) { return SizedBox(width: 30,) ;}, itemCount: category2.length,scrollDirection: Axis.horizontal,),
           ),
             SizedBox(height: 30,),
 
-        Container(
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-          //  physics: NeverScrollableScrollPhysics(),
-            child: Container(
-              
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
 
-
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                children: [
-                  Container(
-                    width: 10,
-                    height: 30,
-                    color: defaultcolor2,
-                  ),
-                  SizedBox(width: 5,),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                    children: [
-                      Text('Usually Buy',style: TextStyle(fontSize: 30,),
-
-                      ),
-                      SizedBox(width:10,),
-                      TextButton(onPressed: (){}, child:Icon(Icons.arrow_forward_ios,color: defaultcolor2,))
-                      ,],
-                  ),
-                  SizedBox(width: 120,),
-                  //  TextButton(onPressed: (){}, child: Text('See More',style: TextStyle(color: defaultcolor2,fontSize: 18),),)
-                ],
-              ),
-            ),
-          ),
-        ),
-            Container(
-height: 200,
-              child:ListView.separated(itemBuilder: (context,index)=> Itembuilder(item: provider.items[index],), separatorBuilder: (context,index)=>SizedBox(width: 10,), itemCount:provider.items.length,
-              scrollDirection: Axis.horizontal,
-
-              )
-
-
-
-
-
-
-              ),
             SizedBox(height: 10,),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -132,11 +83,11 @@ height: 200,
            //   mainAxisAlignment: MainAxisAlignment,
 
                 children: [
-                  Container(
-                    width: 10,
-                    height: 30,
-                    color: defaultcolor2,
-                  ),
+                  // Container(
+                  //   width: 10,
+                  //   height: 30,
+                  //   color: defaultcolor2,
+                  // ),
                   SizedBox(width: 10,),
                   Text('Grocery',style: TextStyle(fontSize: 30),
 
@@ -167,11 +118,11 @@ height: 200,
                 //   mainAxisAlignment: MainAxisAlignment,
 
                 children: [
-                  Container(
-                    width: 10,
-                    height: 30,
-                    color: defaultcolor2,
-                  ),
+                  // Container(
+                  //   width: 10,
+                  //   height: 30,
+                  //   color: defaultcolor2,
+                  // ),
                   SizedBox(width: 10,),
                   Text('Fruit',style: TextStyle(fontSize: 30),
 
@@ -204,11 +155,11 @@ height: 200,
                 //   mainAxisAlignment: MainAxisAlignment,
 
                 children: [
-                  Container(
-                    width: 10,
-                    height: 30,
-                    color: defaultcolor2,
-                  ),
+                  // Container(
+                  //   width: 10,
+                  //   height: 30,
+                  //   color: defaultcolor2,
+                  // ),
                   SizedBox(width: 10,),
                   Text('Vegetables',style: TextStyle(fontSize: 30),
 
@@ -258,12 +209,12 @@ padding: EdgeInsetsDirectional.all(15),
       width:150,
 
       decoration:  BoxDecoration(
-        color: defaultColor,
+        color: defaultcolor2,
 
         borderRadius:
         BorderRadiusDirectional.circular(30),
       ),
-      child: Text(category[index],style:TextStyle(fontSize: 15),),),
+      child: Text(category[index],style:TextStyle(fontSize: 15,color: Colors.white),),),
   ),
   onPressed: (){},
 );
