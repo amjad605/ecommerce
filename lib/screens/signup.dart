@@ -42,9 +42,9 @@ leading:IconButton(icon: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.bl
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Image.asset('assets/images/shop.png',width: 120,height: 120,),
+                Image.asset('assets/images/shop.png',width: 130,height: 130,),
 
-                Image.asset('assets/images/name.png',width: 100,height:80,),
+                Image.asset('assets/images/name2.png',width: 190,height:70,),
                 SizedBox(height: 10.0,),
                 TextFormField(
                   controller: NameController,

@@ -8,6 +8,7 @@ class AddItemDialog extends Dialog {
   final imageController = TextEditingController();
   final priceController = TextEditingController();
   final categoryController=TextEditingController();
+  final descriptionController=TextEditingController();
   List<DropdownMenuItem<String>> get  dropdownItems{
   List<DropdownMenuItem<String>> menuItems = [
     DropdownMenuItem(child: Text("Grocery"),value: "a"),
@@ -28,7 +29,7 @@ class AddItemDialog extends Dialog {
       elevation: 14,
       backgroundColor: Colors.white,
       child: Container(
-        height: 400,
+        height: 500,
         width: 300,
         padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
         child: Column(
@@ -78,6 +79,16 @@ categoryController.text=s!;
               ),
             ),
 
+            SizedBox(height: 20),
+
+            TextField(
+              controller: descriptionController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Description',
+              ),
+            ),
+
 
 
             Container(
@@ -86,7 +97,7 @@ categoryController.text=s!;
               child: MaterialButton(
 color: defaultColor,
                 onPressed: (){
-                  var newItem = new Item( name:nameController.text, category: categoryController.text, image: imageController.text,  price:double.parse( priceController.text) , id: 0, isFav: false);
+                  var newItem = new Item( name:nameController.text, category: categoryController.text, image: imageController.text,  price:double.parse( priceController.text) , id: 0, isFav: false,description: descriptionController.text);
                   Navigator.pop(context, newItem);
                 },
                 child: Text("Add")

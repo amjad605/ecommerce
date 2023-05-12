@@ -28,7 +28,7 @@ class DatabaseHelper {
       //In SQFLite, boolean values are stored as Integers, Strings are stored as TEXT
       //for more info about Data Types: https://www.sqlite.org/datatype3.html
       await db.execute("CREATE TABLE Users (id INTEGER PRIMARY KEY, name TEXT, email TEXT, password TEXT,phoneNo TEXT)");
-      await db.execute("CREATE TABLE Items (id INTEGER PRIMARY KEY, name TEXT, category TEXT, image TEXT, isFav INTEGER,price REAL)");
+      await db.execute("CREATE TABLE Items (id INTEGER PRIMARY KEY, name TEXT, category TEXT, image TEXT, isFav INTEGER,price REAL,description TEXT )");
 
     });
   }
@@ -72,9 +72,9 @@ if(user.isNotEmpty){
   ///Insert new item
   static void newItem(Item newItem) async {
     var res = await _db!.rawInsert(
-        "INSERT INTO Items (id,name,category,image,price,isFav) VALUES (?,?,?,?,?,?)",
+        "INSERT INTO Items (id,name,category,image,price,isFav,description) VALUES (?,?,?,?,?,?,?)",
         //here we pass null in the place of the "id", because it is auto-generated PRIMARY KEY
-        [null, newItem.name, newItem.category, newItem.image,newItem.price,newItem.isFav]
+        [null, newItem.name, newItem.category, newItem.image,newItem.price,newItem.isFav,newItem.description]
     );
     print(res);
   }
@@ -95,7 +95,8 @@ if(user.isNotEmpty){
       int isFav = rowData['isFav'] as int;
       double price=rowData['price']as double;
       bool fav=isFav==1;
-      return new Item(id:id,isFav: fav,category: category,image: imageUrl, name: name,price: price);
+     String description =rowData['description']as String;
+      return new Item(id:id,isFav: fav,category: category,image: imageUrl, name: name,price: price,description: description);
     }
     return null;
   }
@@ -114,15 +115,16 @@ if(user.isNotEmpty){
       String imageUrl = rowData['image'] as String;
       int isFav= rowData['isFav'] as int;
       double price= rowData['price'] as double;
-
+      String description =rowData['description']as String;
 bool fav =isFav==1;
-      var item = new Item(id:id,isFav: fav,category: category,image: imageUrl, name: name,price: price);
+      var item = new Item(id:id,isFav: fav,category: category,image: imageUrl, name: name,price: price,description: description);
 items.add(item);
     }
 
 
      return items;
   }
+
   static Future<List<Item>> getfavItems() async {
 
     List<Item> favitems = [];
@@ -137,9 +139,9 @@ items.add(item);
       String imageUrl = rowData['image'] as String;
       int isFav= rowData['isFav'] as int;
       double price= rowData['price']as double;
-
+      String description =rowData['description']as String;
       bool fav =isFav==1;
-      var item = new Item(id:id,isFav: fav,category: category,image: imageUrl, name: name,price: price);
+      var item = new Item(id:id,isFav: fav,category: category,image: imageUrl, name: name,price: price,description: description);
      if(item.isFav) favitems.add(item);
     }
 
@@ -159,19 +161,18 @@ items.add(item);
         where: "id = ?",
         whereArgs: [item.id]);
 
-print(item.id);
+print('id: ${item.id} fav : ${item.isFav}');
   }
-  static void updateItems(Item item) async {
+
+  static void updateItems() async {
     //notice that the id column will never change
     _db!.update('Items', {
-      'name' : item.name,
-      'category' : item.category,
-      'image' : item.image,
-      'isFav' : item.isFav,
-      'price' : item.price,
+
+      'image' : 'https://mcprod.hyperone.com.eg/media/catalog/product/cache/1ca275941aea0ae98b372dcb44b7c67a/6/2/6221031490675_--_.jpg',
+
     },
-        where: "id = ?",
-        whereArgs: [item.id]);
+        where: "name = ?",
+        whereArgs: ['Chipsy']);
   }
 
   ///Delete item by its id

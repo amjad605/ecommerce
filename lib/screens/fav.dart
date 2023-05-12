@@ -27,6 +27,7 @@ class _fav extends State<fav> {
         provider.removefromcart(widget.item);
 
       },
+
       background:Container(
 
         alignment: Alignment.centerRight,
@@ -34,7 +35,7 @@ class _fav extends State<fav> {
       child: Icon(Icons.delete,color: Colors.white,),
       ),
       child: Card(
-        
+        elevation: 0,
         child: Row(
 
           children: [
@@ -43,7 +44,7 @@ class _fav extends State<fav> {
                 child: Container(
                       width: 180,
                        height: 100,
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),image: DecorationImage(image: NetworkImage('${widget.item?.image}',),fit: BoxFit.cover),),),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),image: DecorationImage(image: NetworkImage('${widget.item?.image}',),fit: BoxFit.contain),),),
               ),
                      // child: Image.network('${widget.item?.image}',fit: BoxFit.fill,width: 120,height: 120,)),
                   SizedBox(width: 10,),

@@ -4,14 +4,16 @@ import 'package:ecommerce/componentsonstant/const.dart';
 import 'package:ecommerce/models/item_model.dart';
 import 'package:ecommerce/provider/home_provider.dart';
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 
 class Itembuilder extends StatefulWidget {
 
    Item item;
+   var context;
 
 
-  Itembuilder({Key? key, required this.item,}) : super(key: key);
+  Itembuilder({Key? key, required this.item,required this.context}) : super(key: key);
 
   @override
   State<Itembuilder> createState() => _ItembuilderState();
@@ -23,13 +25,19 @@ class _ItembuilderState extends State<Itembuilder> {
   @override
   Widget build(BuildContext context) {
 
+
     final provider = Provider.of<HomeProvider>(context, listen: true);
     return GestureDetector(
-      onTap: (  ){Navigator.push(
+      onTap: (  ) {
+        provider.clearSugessted();
+        provider.suggest(widget.item);
+
+       //Navigator.push(context,MaterialPageRoute(builder: (context)=>DetailItem(item: widget.item)));
+        Navigator.push(
 
         context,
-        MaterialPageRoute(
-            builder: (context) => DetailItem(item: widget.item,)),);},
+          scaleTransitionBuilder (child: DetailItem(item: widget.item,)) );},
+
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child:   Row(
@@ -50,31 +58,46 @@ class _ItembuilderState extends State<Itembuilder> {
                           height: 280,
                           decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
                             image: DecorationImage(
-                              image: NetworkImage('${widget.item?.image}'),fit: BoxFit.cover,
+                              image: NetworkImage('${widget.item?.image}'),fit: BoxFit.contain,
                             ),
                           ),
 
                         ),
                         IconButton(onPressed: (){
+                          setState(() {
+                            widget.item.isFav = !widget.item.isFav;
+    final index = provider.items.indexWhere((element) =>
+    element.name == widget.item
+    .name);
+    if (index >= 0) {
+   provider.items[index].isFav=widget.item.isFav;}
 
-                          // widget.item.isFav = !widget.item.isFav;
-                          //
-
-
-                          provider.changefav(widget.item);
-                          if(widget.item.isFav){
-                            provider.favItem.add(widget.item);
-
-                          }
-                          else{
-                            provider.favItem.remove(widget.item);
+                            print('dost ${widget.item.hashCode}');
 
 
-                         }
-                          provider.updateItem(widget.item);
 
 
-                        }, icon:widget.item.Iconfav,) ],
+                            if(widget.item.isFav){
+                              provider.favItem.add(widget.item);
+
+                            }
+                            else{
+                              provider.favItem.remove(widget.item);
+
+
+                            }
+                            provider.updateItem(widget.item);
+
+
+                          });
+
+                        }, icon:widget.item.isFav?Icon(
+
+                          Icons.favorite,
+                          color: Colors.red,
+                        ):Icon(
+                          Icons.favorite_border,
+                        ),) ],
 
                     ),
                   ),
@@ -95,7 +118,7 @@ class _ItembuilderState extends State<Itembuilder> {
                     ),
 
                     child: MaterialButton(onPressed: (){
-                      provider.addtocart(widget.item);
+                      provider.addtocart(widget.item,context);
 
                     },child:Text("add to cart"),splashColor:defaultcolor2,
 
@@ -117,18 +140,17 @@ class _ItembuilderState extends State<Itembuilder> {
 
   }
 
-  Widget favIcon(){
-    if(widget.item.isFav){
-
+  Widget favIcon(item) {
+    if (widget.item.isFav) {
       return Icon(
 
         Icons.favorite,
         color: Colors.red,
       );
+    } else {
+      return Icon(
+        Icons.favorite_border,
+      );
     }
-    return Icon(
-      Icons.favorite_border,
-    );
   }
-
 }

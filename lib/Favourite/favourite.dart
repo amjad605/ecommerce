@@ -46,7 +46,7 @@ class _FavouriteState extends State<Favourite> {
             crossAxisCount: 2,
           )
 
-            , itemBuilder: (context,index)=>Itembuilder(item: provider.favItem[index],),
+            , itemBuilder: (context,index)=>Itembuilder(item: provider.favItem[index],context:context),
             itemCount:provider.favItem.length,
 
 

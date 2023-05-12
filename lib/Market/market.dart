@@ -5,7 +5,9 @@ import 'package:ecommerce/components/constance/constant/const.dart';
 import 'package:ecommerce/componentsonstant/const.dart';
 import 'package:ecommerce/models/item_model.dart';
 import 'package:ecommerce/provider/home_provider.dart';
+import 'package:ecommerce/screens/grocery.dart';
 import 'package:ecommerce/screens/itembuilder.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -31,6 +33,7 @@ class _FakhaState extends State<Fakha> {
     // TODO: implement build
     return Scaffold(
       body:SingleChildScrollView(
+
         scrollDirection: Axis.vertical,
 
         child: Column(
@@ -68,9 +71,27 @@ padding:EdgeInsetsDirectional.all(20),
             ),
           SizedBox(height: 10,),
           Container(
-            height: 175,
+            height: 140,
 
-            child: ListView.separated(itemBuilder:(context,int index)=> Catrgory(index), separatorBuilder: (BuildContext context, int index) { return SizedBox(width: 30,) ;}, itemCount: category2.length,scrollDirection: Axis.horizontal,),
+            child: ListView.separated(itemBuilder:(context,int index){
+
+
+              if( index ==0 ){
+                return Catrgory(index , context,provider.a ,'Grocery');
+
+              }
+              else if ( index ==1){
+                return Catrgory(index , context,provider.b ,"Fruit");
+
+              }
+              else if (index == 2){
+                return Catrgory(index , context,provider.c ,"Vegetable");
+              }
+              else {
+                return Catrgory(index, context, provider.e,"Dairy Products");
+              }
+
+            }, separatorBuilder: (BuildContext context, int index) { return SizedBox(width: 30,) ;}, itemCount: category2.length,scrollDirection: Axis.horizontal,),
           ),
             SizedBox(height: 30,),
 
@@ -93,14 +114,16 @@ padding:EdgeInsetsDirectional.all(20),
 
                   ),
                   SizedBox(width:30,),
-                  TextButton(onPressed: (){}, child:Icon(Icons.arrow_forward_ios,color: defaultcolor2,))
+                  TextButton(onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Grocery(provider.a, 'Grocery')));
+                  }, child:Icon(Icons.arrow_forward_ios,color: defaultcolor2,))
                 ],
               ),
             ),
             SizedBox(height: 10,),
             Container(
                 height: 200,
-                child:ListView.separated(itemBuilder: (context,index)=> Itembuilder(item: provider.a[index],), separatorBuilder: (context,index)=>SizedBox(width: 10,), itemCount:provider.a.length,
+                child:ListView.separated(itemBuilder: (context,index)=> Itembuilder(item: provider.a[index],context: context,), separatorBuilder: (context,index)=>SizedBox(width: 10,), itemCount:provider.a.length,
                   scrollDirection: Axis.horizontal,
 
                 )
@@ -128,7 +151,7 @@ padding:EdgeInsetsDirectional.all(20),
 
                   ),
                   SizedBox(width:30,),
-                  TextButton(onPressed: (){}, child: Icon(Icons.arrow_forward_ios,color: defaultcolor2,))
+                  TextButton(onPressed: (){   Navigator.push(context, MaterialPageRoute(builder: (context)=>Grocery(provider.b, 'Fruit')));}, child: Icon(Icons.arrow_forward_ios,color: defaultcolor2,))
                 ],
               ),
             ),
@@ -137,7 +160,7 @@ padding:EdgeInsetsDirectional.all(20),
             SizedBox(height: 10,),
             Container(
                 height: 200,
-                child:ListView.separated(itemBuilder: (context,index)=> Itembuilder(item: provider.b[index],), separatorBuilder: (context,index)=>SizedBox(width: 10,), itemCount:provider.b.length,
+                child:ListView.separated(itemBuilder: (context,index)=> Itembuilder(item: provider.b[index],context: context,), separatorBuilder: (context,index)=>SizedBox(width: 10,), itemCount:provider.b.length,
                   scrollDirection: Axis.horizontal,
 
                 )
@@ -165,7 +188,7 @@ padding:EdgeInsetsDirectional.all(20),
 
                   ),
                   SizedBox(width:30,),
-                  TextButton(onPressed: (){}, child: Icon(Icons.arrow_forward_ios,color: defaultcolor2,)),
+                  TextButton(onPressed: (){   Navigator.push(context, MaterialPageRoute(builder: (context)=>Grocery(provider.c, 'Vegetables')));}, child: Icon(Icons.arrow_forward_ios,color: defaultcolor2,)),
 
                 ],
               ),
@@ -173,7 +196,7 @@ padding:EdgeInsetsDirectional.all(20),
             SizedBox(height: 10,),
             Container(
                 height: 200,
-                child:ListView.separated(itemBuilder: (context,index)=> Itembuilder(item: provider.c[index],), separatorBuilder: (context,index)=>SizedBox(width: 10,), itemCount:provider.c.length,
+                child:ListView.separated(itemBuilder: (context,index)=> Itembuilder(item: provider.c[index],context: context,), separatorBuilder: (context,index)=>SizedBox(width: 10,), itemCount:provider.c.length,
                   scrollDirection: Axis.horizontal,
 
                 )

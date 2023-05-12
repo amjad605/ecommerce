@@ -2,15 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Item{
+   String description;
    int id;
   final String? name;
   final String? category;
-  final String? image;
+    String? image;
    bool isFav;
   final double? price;
-  int quantity=0;
+   int quantity=0;
   bool inCart=false;
-   Widget Iconfav=Icon(Icons.favorite,color: Colors.red,);
+
   Item(
       {
         required this.id,
@@ -20,6 +21,8 @@ class Item{
     this.image,
      required this.isFav,
      this.price,
+        required this . description,
+
 
 
 });

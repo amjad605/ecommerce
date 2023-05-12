@@ -37,7 +37,7 @@ title: Container(
 
         children :[ CircleAvatar(radius: 70,
             backgroundColor: defaultcolor2,
-            child:Text(provider.user!.name[0],style: TextStyle(fontSize: 80,color: Colors.white),)
+            child:Text(provider.user!.name[0].toUpperCase(),style: TextStyle(fontSize: 80,color: Colors.white),)
           // Icon(Icons.person,size: 120,color: Colors.blueGrey,),backgroundColor: Colors.grey[300],
         ),
 
@@ -67,7 +67,7 @@ title: Container(
 
               alignment: Alignment.topLeft,
               width: double.infinity,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.grey[50]),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white),
               child: MaterialButton(onPressed: (){},child:
               Row(children: [
                 Icon(Icons.email, color: defaultColor,),
@@ -82,7 +82,7 @@ title: Container(
 
               alignment: Alignment.topLeft,
               width: double.infinity,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.grey[50]),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white),
               child: MaterialButton(onPressed: (){},child:
               Row(children: [
                 Icon(Icons.person, color: defaultColor,),
@@ -97,7 +97,7 @@ title: Container(
 
               alignment: Alignment.topLeft,
               width: double.infinity,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.grey[50]),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white),
               child: MaterialButton(onPressed: (){},child:
               Row(children: [
                 Icon(Icons.phone_android, color: defaultColor,),
@@ -112,7 +112,7 @@ title: Container(
 
               alignment: Alignment.topLeft,
               width: double.infinity,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.grey[50]),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white),
               child: MaterialButton(onPressed: (){
                 Navigator.push(context, MaterialPageRoute(builder:(build)=>Cart()));
               },child:
@@ -135,7 +135,7 @@ title: Container(
 
               alignment: Alignment.topLeft,
               width: double.infinity,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.grey[50]),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white),
               child: MaterialButton(onPressed: (){},child:
               Row(children: [
                 Icon(Icons.settings, color: defaultColor,),

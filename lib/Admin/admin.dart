@@ -31,7 +31,7 @@ leading: IconButton(icon: Icon(Icons.arrow_back_ios_new_outlined),onPressed: (){
                   children: [
                     Image.asset('assets/images/shop.png',width: 175,height: 175,),
                     SizedBox(height: 10,),
-                    Image.asset('assets/images/name.png',width: 140,height:80,),
+                    Image.asset('assets/images/name2.png',width: 190,height:70,),
                     SizedBox(height: 30.0,),
                     TextFormField(
                       controller: adminController,
